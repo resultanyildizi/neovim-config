@@ -20,11 +20,10 @@ end
 
 lsp.preset('recommended')
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'lua_ls',
-})
+--lsp.ensure_installed({
+  --'tsserver',
+  --'eslint',
+--})
 
 cmp.setup({
   snippet = {
@@ -93,6 +92,12 @@ lspconfig.gopls.setup{
 -- configure pyright
 -- python language
 lspconfig.pyright.setup{
+  on_attach = on_attach,
+}
+
+-- configure lua_ls
+-- lua language
+lspconfig.lua_ls.setup{
   on_attach = on_attach,
 }
 

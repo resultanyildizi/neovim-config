@@ -1,9 +1,6 @@
 vim.g.mapleader = " "
 local keyset = vim.keymap.set
 
-keyset("n", "<leader>pv", vim.cmd.Ex)
-
-
 keyset("n", "<leader>w", function() vim.cmd.wincmd("w") end)
 keyset("n", "<leader>wj", function() vim.cmd.wincmd("j") end)
 keyset("n", "<leader>wk", function() vim.cmd.wincmd("k") end)
@@ -36,15 +33,15 @@ keyset("n", "Q", "<nop>")
 keyset("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Define the function to format with fallback to Neoformat + Prettier
-function format_with_fallback()
-    -- Attempt to format using LSP formatter
-    local result = vim.lsp.buf.format()
+local function format_with_fallback()
+  -- Attempt to format using LSP formatter
+  local result = vim.lsp.buf.format()
 
-    if not result or vim.tbl_isempty(result) then
-        print('Trying to format with Neoformat')
-        -- LSP formatter failed, use Neoformat with prettier as fallback
-        vim.cmd('silent Neoformat prettier')
-    end
+  if not result or vim.tbl_isempty(result) then
+    print('Trying to format with Neoformat')
+    -- LSP formatter failed, use Neoformat with prettier as fallback
+    vim.cmd('silent Neoformat prettier')
+  end
 end
 keyset("n", "<leader>f", format_with_fallback)
 
@@ -55,13 +52,34 @@ keyset("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 keyset("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keyset("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-keyset("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 keyset("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-
 keyset("n", "gt", "<cmd>tabnew<CR>")
 
 -- This is about terminal
-keyset("n", "<leader>nt", "<cmd>belowright split | terminal<CR>")
+local function open_terminal()
+  vim.api.nvim_command("belowright split")
+  vim.api.nvim_command("terminal")
+  vim.api.nvim_command("resize 20")
+end
+keyset("n", "<leader>nt", open_terminal)
+keyset("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
 
-keyset("i", "<C-l>", "copilot#Accept('<CR>')", {noremap = true, silent = true, expr=true, replace_keycodes = false })
+-- Change the pane size
+local function is_right_most_pane()
+  local current_win = vim.fn.winnr()
+  local rightmost_win = vim.fn.winnr('$')
+  return current_win == rightmost_win
+end
+local function resize_accordingly(key)
+  local is_right_most = is_right_most_pane()
+  local accumulator = 5
+  local sign = '+'
+  if ((key == 'left' and not is_right_most) or (key == 'right' and is_right_most)) then
+    sign = '-'
+  end
+  vim.api.nvim_command("vertical resize " .. sign .. accumulator)
+end
+keyset("n", "<leader>l", function() resize_accordingly('right') end)
+keyset("n", "<leader>h", function() resize_accordingly('left') end)
+
+keyset("i", "<C-l>", "copilot#Accept('<CR>')", { noremap = true, silent = true, expr = true, replace_keycodes = false })

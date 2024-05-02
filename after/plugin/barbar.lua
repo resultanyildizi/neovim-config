@@ -30,6 +30,7 @@ map('n', 'gc', vim.cmd.BufferClose, opts)
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
 map('n', 'gp', vim.cmd.BufferPick, opts)
+map('n', 'gC', vim.cmd.BufferCloseAllButCurrent, opts)
 -- Pin/unpin buffer
 map('n', 'grp', vim.cmd.BufferPin, opts)
 -- Sort automatically by...

@@ -27,11 +27,11 @@ return require('packer').startup(function(use)
   use 'sbdchd/neoformat'
   use 'sindrets/diffview.nvim'
   use 'dyng/ctrlsf.vim'
-  use 'github/copilot.vim'
+  use 'f-person/auto-dark-mode.nvim'
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.4', }
   use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
-  use { 'j-hui/fidget.nvim', tag = 'legacy' }
+  use { 'j-hui/fidget.nvim', tag = 'v1.4.1' }
   use {
     'pwntester/octo.nvim',
     requires = {
@@ -40,24 +40,24 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-web-devicons',
     },
   }
+  --use 'github/copilot.vim'
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},-- Required
+      { 'neovim/nvim-lspconfig' }, -- Required
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+      { 'hrsh7th/nvim-cmp' },    -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'L3MON4D3/LuaSnip' },    -- Required
     }
   }
 
   -- Theme plugins
-  use 'savq/melange-nvim'
-  use 'rakr/vim-one'
   use 'morhetz/gruvbox'
   use 'EdenEast/nightfox.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
   use { 'rose-pine/neovim', as = 'rose-pine' }
+  use { 'sonph/onehalf', rtp = 'vim' }
 end)

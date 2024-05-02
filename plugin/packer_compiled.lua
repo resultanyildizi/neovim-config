@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["auto-dark-mode.nvim"] = {
+    loaded = true,
+    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/auto-dark-mode.nvim",
+    url = "https://github.com/f-person/auto-dark-mode.nvim"
+  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/barbar.nvim",
@@ -108,11 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
     url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
-  },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
   },
   ["ctrlsf.vim"] = {
     loaded = true,
@@ -148,16 +148,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
-    url = "https://github.com/iamcco/markdown-preview.nvim"
-  },
-  ["melange-nvim"] = {
-    loaded = true,
-    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/melange-nvim",
-    url = "https://github.com/savq/melange-nvim"
   },
   neoformat = {
     loaded = true,
@@ -214,6 +204,11 @@ _G.packer_plugins = {
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/octo.nvim",
     url = "https://github.com/pwntester/octo.nvim"
   },
+  onehalf = {
+    loaded = true,
+    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/onehalf/vim",
+    url = "https://github.com/sonph/onehalf"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -259,11 +254,6 @@ _G.packer_plugins = {
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/vim-go",
     url = "https://github.com/fatih/vim-go"
   },
-  ["vim-one"] = {
-    loaded = true,
-    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/vim-one",
-    url = "https://github.com/rakr/vim-one"
-  },
   ["vim-signify"] = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/vim-signify",
@@ -277,6 +267,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Runtimepath customization
+time([[Runtimepath customization]], true)
+vim.o.runtimepath = vim.o.runtimepath .. ",/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/onehalf/vim"
+time([[Runtimepath customization]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
