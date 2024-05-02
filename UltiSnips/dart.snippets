@@ -1,0 +1,215 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+
+snippet lgd "logger.d()" b
+logger.d("${1: Your message}");
+endsnippet
+
+snippet lgw "logger.w()" b
+logger.w("${1: Your message}");
+endsnippet
+
+snippet lgwtf "logger.wtf()" b
+logger.wtf("${1: Your message}");
+endsnippet
+
+snippet lge "logger.e()" b
+logger.f("${1: Your message}");
+endsnippet
+
+snippet ctxread "context.read()" b
+context.read<${1:Type}>()$2
+endsnippet
+
+snippet todo "// TODO(resul): " b
+// TODO(resul): ${1: Your message}
+endsnippet
+
+snippet tr "#translate: recommended_key" b
+// #translate: ${0:recommended_key}
+endsnippet
+
+snippet fix "// FIX: " b
+// FIX: ${1: Your message} @resul
+endsnippet
+
+snippet initS "void initState()" b
+@override
+void initState() {
+	super.initState();
+	${1:// Your initialization code here}
+}
+endsnippet
+
+snippet didCh "void didChangeDependencies()" b
+@override
+void didChangeDependencies() {
+	super.didChangeDependencies();
+	${1:// Your initialization code here}
+}
+endsnippet
+
+snippet voidcb "void callback()" b
+void ${1:callback}() {
+	$2
+}
+endsnippet
+
+snippet sttless "StatelessWidget" b
+class ${1:MyWidget} extends StatelessWidget {
+  const $1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('$1'),
+      ),
+      body: ${2:Container()},
+    );
+  }
+}
+endsnippet
+
+snippet sttful "StatefulWidget" b
+class ${1:MyWidget} extends StatefulWidget {
+  const $1({super.key});
+
+  @override
+  _$1State createState() => _$1State();
+}
+
+class _$1State extends State<$1> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('$1'),
+      ),
+      body: ${2:Container()},
+    );
+  }
+}
+endsnippet
+
+snippet mateapp "Simple material app" b
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '${1:MyApp}',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const ${2:HomePage}(title: '$1'),
+    );
+  }
+}
+
+class $2 extends StatelessWidget {
+  const $2({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: const Center(
+        child: Text('Hello, world!'),
+      ),
+    );
+  }
+}
+endsnippet
+
+snippet r4app "Simple R4App" b
+class ${1:CircleApp} extends R4App {
+  const $1({super.key});
+
+  @override
+  State<R4App> createState() {
+    return $1State();
+  }
+}
+
+class $1State extends R4AppState {
+  late double radius;
+  late double step;
+  @override
+  void setup() {
+    radius = 10.0;
+    step = 0.01;
+  }
+
+  @override
+  void update() {
+    if (radius >= 100) {
+      step = -0.5;
+    } else if (radius <= 10) {
+      step = 0.5;
+    }
+
+    radius += step;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = Colors.redAccent;
+    final center = Offset(size.width / 2, size.height / 2);
+
+    canvas.drawCircle(
+      center,
+      radius,
+      paint,
+    );
+  }
+
+  @override
+  Widget buildUIOverlay(BuildContext context) {
+    return const Positioned(
+      top: 10,
+      left: 10,
+      child: Text(
+        '$1',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+}
+endsnippet
