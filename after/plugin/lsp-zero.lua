@@ -3,26 +3,43 @@ local lspconfig = require('lspconfig')
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
+
 local function on_attach(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>a<space>", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.setqflist() end, opts)
-    vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
+  local opts = { buffer = bufnr, remap = false }
+
+  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set("n", "<leader>a<space>", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "<leader>gr", function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.setqflist() end, opts)
+  -- Use custom formatting function
+  vim.cmd([[
+    augroup LspFormat
+      autocmd! * <buffer>
+      autocmd BufWritePre <buffer> lua Format()
+    augroup END
+  ]])
+end
+
+function Format()
+  if vim.bo.filetype == 'markdown' then
+    vim.cmd('silent Neoformat prettier')
+  else
+    vim.lsp.buf.format()
+  end
 end
 
 lsp.preset('recommended')
 
 --lsp.ensure_installed({
-  --'tsserver',
-  --'eslint',
+--'tsserver',
+--'eslint',
 --})
 
 cmp.setup({
@@ -36,16 +53,16 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-  },
-  { { name = 'buffer' }, }),
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    },
+    { { name = 'buffer' }, }),
   mapping = {
     -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -58,7 +75,7 @@ cmp.setup({
 
 -- configure dartls
 -- dart language
-lspconfig.dartls.setup{
+lspconfig.dartls.setup {
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern('pubspec.yaml'),
   settings = {
@@ -79,31 +96,31 @@ lspconfig.dartls.setup{
 
 -- configure clangd
 -- c language
-lspconfig.clangd.setup{
+lspconfig.clangd.setup {
   on_attach = on_attach,
 }
 
 -- configure gopls
 -- go language
-lspconfig.gopls.setup{
+lspconfig.gopls.setup {
   on_attach = on_attach,
 }
 
 -- configure pyright
 -- python language
-lspconfig.pyright.setup{
+lspconfig.pyright.setup {
   on_attach = on_attach,
 }
 
 -- configure lua_ls
 -- lua language
-lspconfig.lua_ls.setup{
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
 }
 
 -- configure marksman
 -- markdown language
-lspconfig.marksman.setup{
+lspconfig.marksman.setup {
   on_attach = on_attach,
 }
 

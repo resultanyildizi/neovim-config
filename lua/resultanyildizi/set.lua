@@ -22,4 +22,5 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Set color theme
 DarkTheme = 'catppuccin-frappe'
-LightTheme = 'catpuccin-latte'
+LightTheme = 'catppuccin-latte'
+LualineTheme = 'catppuccin'

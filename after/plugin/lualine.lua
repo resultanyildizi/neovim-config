@@ -1,7 +1,7 @@
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = LightTheme,
+    theme = LualineTheme,
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},

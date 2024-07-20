@@ -32,18 +32,6 @@ keyset("i", "<C-c>", "<Esc>")
 keyset("n", "Q", "<nop>")
 keyset("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
--- Define the function to format with fallback to Neoformat + Prettier
-local function format_with_fallback()
-  -- Attempt to format using LSP formatter
-  local result = vim.lsp.buf.format()
-
-  if not result or vim.tbl_isempty(result) then
-    print('Trying to format with Neoformat')
-    -- LSP formatter failed, use Neoformat with prettier as fallback
-    vim.cmd('silent Neoformat prettier')
-  end
-end
-keyset("n", "<leader>f", format_with_fallback)
 
 keyset("n", "<C-k>", "<cmd>cnext<CR>zz")
 keyset("n", "<C-j>", "<cmd>cprev<CR>zz")
