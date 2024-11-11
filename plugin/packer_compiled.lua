@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
     url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   ["ctrlsf.vim"] = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/ctrlsf.vim",
@@ -199,11 +204,6 @@ _G.packer_plugins = {
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["octo.nvim"] = {
-    loaded = true,
-    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/octo.nvim",
-    url = "https://github.com/pwntester/octo.nvim"
-  },
   onehalf = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/onehalf/vim",
@@ -263,6 +263,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/Users/resultanyildizi/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   }
 }
 
