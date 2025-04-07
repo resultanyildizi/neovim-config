@@ -21,8 +21,8 @@ local function on_attach(client, bufnr)
   -- Use custom formatting function
   vim.cmd([[
     augroup LspFormat
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua Format()
+    autocmd! * <buffer>
+    autocmd BufWritePre <buffer> lua Format()
     augroup END
   ]])
 end
@@ -75,6 +75,23 @@ cmp.setup({
 
 -- configure dartls
 -- dart language
+
+local project_root_func = lspconfig.util.root_pattern('pubspec.yaml')
+local project_root = project_root_func(vim.fn.expand('%:p:h'))
+
+-- if project_contains storynowai then width = 160 else width = 80
+
+local line_length = 80
+if project_root then
+  if string.match(project_root, 'storynowai') or string.match(project_root, 'mospy') then
+    line_length = 120
+  else
+    line_length = 80
+  end
+end
+
+print(line_length)
+
 lspconfig.dartls.setup {
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern('pubspec.yaml'),
@@ -86,6 +103,7 @@ lspconfig.dartls.setup {
         vim.fn.expand('/opt/homebrew/'),
         vim.fn.expand('usr/local/flutter/'),
       },
+      lineLength = line_length,
       updateImportsOnRename = true,
       completeFunctionCalls = true,
       showTodos = true,

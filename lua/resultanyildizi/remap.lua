@@ -70,4 +70,4 @@ end
 keyset("n", "<leader>l", function() resize_accordingly('right') end)
 keyset("n", "<leader>h", function() resize_accordingly('left') end)
 
-keyset("i", "<C-l>", "copilot#Accept('<CR>')", { noremap = true, silent = true, expr = true, replace_keycodes = false })
+--keyset("i", "<C-l>", "copilot#Accept('<CR>')", { noremap = true, silent = true, expr = true, replace_keycodes = false })

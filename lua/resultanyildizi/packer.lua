@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
   use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
   use { 'j-hui/fidget.nvim', tag = 'v1.4.1' }
   use { 'lervag/vimtex', tag = 'v2.15' }
-  use 'github/copilot.vim'
+  --use 'github/copilot.vim'
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
